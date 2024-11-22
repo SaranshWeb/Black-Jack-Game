@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #006400; */
+    /* background: #0c2c54; */
+    /* background: #07d8da7d; */
+    background: #0040ff7a;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #game {
+    max-width: 600px;
+    /* min-height: 445.6px; */
+    margin: 50px auto;
+    padding: 20px;
+    /* background: #222; */
+    /* background: #222222e0; */
+    /* background: #1d4647; */
+    background: #1d4647e8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .betting {
+    margin: 10px 0;
+  }
+  
+  .table {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .card {
+    width: 50px;
+    height: 75px;
+    background: white;
+    color: black;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .controls {
+    margin-top: 20px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #444;
+    /* background-color: rgb(7, 226, 109); */
+    color: white;
+  }
+  
+  button:disabled {
+    opacity: 0.4;
+    background-color: #888;
+    cursor: not-allowed;
+  }
+  
+  /* .status{
+    color: orange;
+  } */
