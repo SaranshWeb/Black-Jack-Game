@@ -28,7 +28,6 @@ body {
   background-position: center;
   filter: blur(5px);
   z-index: -1;
-  
 }
 
 #game {
@@ -97,12 +96,14 @@ button {
   background-color: #444;
   /* background-color: rgb(7, 226, 109); */
   color: white;
+  width: 100px;
 }
 
 button:disabled {
   opacity: 0.4;
   background-color: #888;
   cursor: not-allowed;
+  display: none;
 }
 
 /* .status{
@@ -127,13 +128,84 @@ button:disabled {
   display: inline;
 } */
 
-
-
-
-.winLoseCount{
+.winLoseCount {
   display: flex;
   gap: 40px;
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    text-align: center;
+    padding: 10px;
+  }
+
+  #game {
+    width: 90%; /* Reduce game container width */
+    padding: 15px; /* Add some padding */
+    margin: 20px auto; /* Center on screen */
+    box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
+  }
+
+  h1 {
+    font-size: 1.5em; /* Slightly smaller heading */
+  }
+
+  .betting input {
+    width: 70%; /* Expand input field to be easier to click */
+  }
+
+  .table {
+    flex-direction: column; /* Stack player and dealer sections vertically */
+    gap: 20px; /* Add spacing between sections */
+  }
+
+  .cards {
+    flex-wrap: wrap; /* Allow cards to wrap if there’s not enough space */
+    gap: 5px;
+  }
+
+  .card {
+    width: 40px;
+    height: 60px;
+    font-size: 1em; /* Adjust card size */
+  }
+
+  button {
+    width: 50%; /* Full-width buttons for easier interaction */
+    margin: 5px auto; /* Center buttons */
+    padding: 12px;
+    font-size: 1em;
+    display: block;
+  }
+
+  .winLoseCount {
+    /* flex-direction: column;  */
+    gap: 10px;
+  }
+
+
+.dealer {
+  order: 1; /* Ensure the dealer's hand is at the top */
+}
+
+.player {
+  order: 2; /* Ensure the player's hand is at the bottom */
+}
 }
