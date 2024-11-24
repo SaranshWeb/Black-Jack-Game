@@ -143,7 +143,7 @@ function endGame() {
     lose = lose + 1;
   } else if (dealerScore > 21 || playerScore > dealerScore) {
     messageEl.textContent = "You win!";
-    messageEl.style.color = "green"; // Set color directly
+    messageEl.style.color = "#00ff00"; // Set color directly
     messageEl.style.fontSize = "2em";
     balance += currentBet;
     win = win + 1;
@@ -184,7 +184,7 @@ function handleBlackjack() {
       messageEl.style.color = "gray"; // Set color directly
     } else if (playerScore === 21) {
       messageEl.textContent = "Blackjack! You win!";
-      messageEl.style.color = "green"; // Set color directly
+      messageEl.style.color = "#00ff00"; // Set color directly
       balance += currentBet;
       win = win + 1;
     } else {
@@ -227,7 +227,7 @@ dealBtn.addEventListener("click", () => {
   renderHand(playerHand, playerCardsEl);
   renderHand(dealerHand.slice(0, 1), dealerCardsEl);
   playerScoreEl.textContent = `Score: ${calculateScore(playerHand)}`;
-  dealerScoreEl.textContent = `Score: ?`;
+  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
 
   messageEl.textContent = "Your turn!";
   dealBtn.disabled = true;
@@ -241,6 +241,7 @@ hitBtn.addEventListener("click", () => {
   playerHand.push(deck.pop());
   renderHand(playerHand, playerCardsEl);
   playerScoreEl.textContent = `Score: ${calculateScore(playerHand)}`;
+  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
 
   handleBlackjack();
 
