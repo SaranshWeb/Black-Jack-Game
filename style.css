@@ -242,4 +242,9 @@ button:disabled {
   .player {
     order: 2; /* Ensure the player's hand is at the bottom */
   }
+
+  .parent::before {
+  width: 100vw;
+  height: 105vh;
+  }
 }
