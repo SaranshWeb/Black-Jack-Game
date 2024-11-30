@@ -245,6 +245,6 @@ button:disabled {
 
   .parent::before {
   width: 100vw;
-  height: 105vh;
+  height: 110vh;
   }
 }
