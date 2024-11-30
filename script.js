@@ -10,7 +10,6 @@ let lose = 0;
 
 // DOM Elements
 const messageEl = document.getElementById("message");
-//
 const playerCardsEl = document.getElementById("player-cards");
 const dealerCardsEl = document.getElementById("dealer-cards");
 const playerScoreEl = document.getElementById("player-score");
@@ -27,21 +26,7 @@ const betInputEl = document.getElementById("bet-input");
 // Initialize Deck
 function createDeck() {
   const suits = ["♠", "♥", "♦", "♣"];
-  const values = [
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
-  ];
+  const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
   deck = [];
 
   for (let suit of suits) {
@@ -50,8 +35,11 @@ function createDeck() {
     }
   }
 
-  // Shuffle deck
-  deck = deck.sort(() => Math.random() - 0.5);
+  // Shuffle deck using Fisher-Yates algorithm
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
 }
 
 // Calculate hand score
@@ -89,88 +77,79 @@ function renderHand(hand, element) {
   });
 }
 
-// Check balance and reset if it reaches 0
-function checkAndResetBalance() {
-  if (balance <= 0) {
-    alert("Your balance has reached $0. It has been reset to $1000.");
-    balance = 1000;
-    updateBalanceDisplay();
-  }
-}
-
 // Update balance display
 function updateBalanceDisplay() {
   balanceEl.textContent = `Balance: $${balance}`;
 }
 
-function winDisplay() {
+// Update win/lose counters
+function updateWinLoseDisplay() {
   winCountPEl.textContent = `Wins: ${win}`;
+  loseCountPEl.textContent = `Losses: ${lose}`;
 }
 
-function loseDisplay() {
-  loseCountPEl.textContent = `Loses: ${lose}`;
-}
-
-// Reset the game state while keeping the balance intact
+// Reset the game state
 function resetGame() {
   playerHand = [];
   dealerHand = [];
   isGameOver = false;
   messageEl.textContent = "Place your bet and press 'Deal' to start.";
+  messageEl.style.color = "white";
   playerScoreEl.textContent = "Score: 0";
   dealerScoreEl.textContent = "Score: 0";
   playerCardsEl.innerHTML = "";
   dealerCardsEl.innerHTML = "";
-  messageEl.style.color = "white"; //
-  messageEl.style.fontSize = "1em";
   dealBtn.disabled = false;
   hitBtn.disabled = true;
   standBtn.disabled = true;
   againBtn.disabled = true;
 }
 
-// End game
+// End game logic
 function endGame() {
-  if (isGameOver) return;
-
   const playerScore = calculateScore(playerHand);
   const dealerScore = calculateScore(dealerHand);
 
   if (playerScore > 21) {
     messageEl.textContent = "You busted! Dealer wins.";
-    messageEl.style.color = "red"; // Set color directly
+    messageEl.style.color = "red";
     balance -= currentBet;
-    lose = lose + 1;
+    lose++;
   } else if (dealerScore > 21 || playerScore > dealerScore) {
     messageEl.textContent = "You win!";
-    messageEl.style.color = "#00ff00"; // Set color directly
-    messageEl.style.fontSize = "2em";
+    messageEl.style.color = "green";
     balance += currentBet;
-    win = win + 1;
+    win++;
   } else if (playerScore < dealerScore) {
     messageEl.textContent = "Dealer wins!";
-    messageEl.style.color = "red"; // Set color directly
+    messageEl.style.color = "red";
     balance -= currentBet;
-    lose = lose + 1;
+    lose++;
   } else {
     messageEl.textContent = "It's a tie!";
-    messageEl.style.color = "gray"; // Set color directly
+    messageEl.style.color = "gray";
   }
 
   updateBalanceDisplay();
-  checkAndResetBalance();
-  winDisplay();
-  loseDisplay();
+  updateWinLoseDisplay();
   hitBtn.disabled = true;
   standBtn.disabled = true;
   againBtn.disabled = false;
   isGameOver = true;
 }
 
+// Dealer's turn
+function dealerPlay() {
+  while (calculateScore(dealerHand) < 17) {
+    dealerHand.push(deck.pop());
+  }
+  renderHand(dealerHand, dealerCardsEl);
+  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
+  endGame();
+}
+
 // Handle blackjack
 function handleBlackjack() {
-  if (isGameOver) return;
-
   const playerScore = calculateScore(playerHand);
   const dealerScore = calculateScore(dealerHand);
 
@@ -180,36 +159,26 @@ function handleBlackjack() {
     isGameOver = true;
 
     if (playerScore === 21 && dealerScore === 21) {
-      messageEl.textContent = "It's a tie! Both have 21.";
-      messageEl.style.color = "gray"; // Set color directly
+      messageEl.textContent = "It's a tie! Both have Blackjack.";
+      messageEl.style.color = "gray";
     } else if (playerScore === 21) {
       messageEl.textContent = "Blackjack! You win!";
-      messageEl.style.color = "#00ff00"; // Set color directly
+      messageEl.style.color = "green";
       balance += currentBet;
-      win = win + 1;
+      win++;
     } else {
-      messageEl.textContent = "Dealer has 21! Dealer wins.";
-      messageEl.style.color = "red"; // Set color directly
+      messageEl.textContent = "Dealer has Blackjack! Dealer wins.";
+      messageEl.style.color = "red";
       balance -= currentBet;
-      lose = lose + 1;
+      lose++;
     }
 
     updateBalanceDisplay();
+    updateWinLoseDisplay();
     hitBtn.disabled = true;
     standBtn.disabled = true;
     againBtn.disabled = false;
   }
-}
-
-// Dealer logic
-function dealerPlay() {
-  while (calculateScore(dealerHand) < 17) {
-    dealerHand.push(deck.pop());
-  }
-  renderHand(dealerHand, dealerCardsEl);
-  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
-
-  if (!isGameOver) endGame();
 }
 
 // Event listeners
@@ -225,9 +194,9 @@ dealBtn.addEventListener("click", () => {
   dealerHand = [deck.pop(), deck.pop()];
 
   renderHand(playerHand, playerCardsEl);
-  renderHand(dealerHand.slice(0, 1), dealerCardsEl);
+  renderHand(dealerHand.slice(0, 1), dealerCardsEl); // Hide one dealer card
   playerScoreEl.textContent = `Score: ${calculateScore(playerHand)}`;
-  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
+  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand.slice(0, 1))}`;
 
   messageEl.textContent = "Your turn!";
   dealBtn.disabled = true;
@@ -241,9 +210,6 @@ hitBtn.addEventListener("click", () => {
   playerHand.push(deck.pop());
   renderHand(playerHand, playerCardsEl);
   playerScoreEl.textContent = `Score: ${calculateScore(playerHand)}`;
-  dealerScoreEl.textContent = `Score: ${calculateScore(dealerHand)}`;
-
-  handleBlackjack();
 
   if (calculateScore(playerHand) >= 21) {
     endGame();
@@ -258,5 +224,7 @@ standBtn.addEventListener("click", () => {
 
 againBtn.addEventListener("click", resetGame);
 
-// Initialize
+// Initialize game
 updateBalanceDisplay();
+updateWinLoseDisplay();
+resetGame();
