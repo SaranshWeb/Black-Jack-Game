@@ -6,40 +6,52 @@
     <title>Blackjack Game</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<!--  -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+
 
   </head>
   <body>
     <div class="parent">
       <div id="game">
-        <h1>Blackjack</h1>
-        <p id="balance">Balance: $1000</p>
-        <div class="betting">
+        <h1 class="lobster-regular" style="font-size: 3rem;">Blackjack</h1>
+        <br>
+        <p id="balance" class="lobster-regular"><u>Balance: $1000</u></p>
+        <div class="betting lobster-regular">
           <label for="bet-input">Bet Amount: </label>
           <input type="number" id="bet-input" min="1" max="1000" value="100" />
         </div>
-        <div class="status">
+        <div class="status lobster-regular">
           <p id="message">Place your bet and press "Deal" to start!</p>
         </div>
-        <div class="table">
-          <div class="player">
-            <h2>Your Hand</h2>
+        <div class="table lobster-regular">
+          <div class="player lobster-regular">
+            <h3>Your Hand</h3>
             <div id="player-cards" class="cards"></div>
             <p id="player-score">Score: 0</p>
           </div>
-          <div class="dealer">
-            <h2>Dealer's Hand</h2>
+          <div class="dealer lobster-regular">
+            <h3>Dealer's Hand</h3>
             <div id="dealer-cards" class="cards"></div>
             <p id="dealer-score">Score: 0</p>
           </div>
         </div>
-        <div class="controls">
-          <button id="deal">Deal</button> <!--<i class="fas fa-play"></i>-->
-          <button id="hit" disabled>Hit</button>
-          <button id="stand" disabled>Stand</button>
-          <button id="again" disabled>Again</button>
+        <div class="controls lobster-regular">
+          <button id="deal" class="parkinsans" >Deal</button> <!--<i class="fas fa-play"></i>-->
+          <button id="hit" class="parkinsans" disabled>Hit</button>
+          <button id="stand" class="parkinsans" disabled>Stand</button>
+          <button id="again" class="parkinsans" disabled>Again</button>
         </div>
         
-        <div class="winLoseCount">
+        <div class="winLoseCount parkinsans">
           <h3 id="winCountP">Wins: 0</p>
           <h3 id="loseCountP">Loses: 0</p>
         </div>
