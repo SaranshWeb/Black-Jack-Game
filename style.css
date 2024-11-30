@@ -16,6 +16,21 @@ body {
   /* height: 100vh; */
 }
 
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: larger;
+}
+
+.parkinsans {
+  font-family: "Parkinsans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .parent::before {
   content: "";
   position: absolute;
@@ -78,8 +93,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.4em;
+  /* font-weight: bold; */
 }
 
 .controls {
@@ -136,6 +151,25 @@ button:disabled {
   justify-content: center;
 }
 
+.betting input {
+  width: 10%; /* Expand input field to be easier to click */
+  text-align: center;
+}
+
+
+.AuthButton{
+  width: auto;
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+
+
+
+
+
 
 
 
@@ -168,7 +202,8 @@ button:disabled {
   }
 
   .betting input {
-    width: 70%; /* Expand input field to be easier to click */
+    width: 10%; /* Expand input field to be easier to click */
+    text-align: center;
   }
 
   .table {
@@ -200,12 +235,11 @@ button:disabled {
     gap: 10px;
   }
 
+  .dealer {
+    order: 1; /* Ensure the dealer's hand is at the top */
+  }
 
-.dealer {
-  order: 1; /* Ensure the dealer's hand is at the top */
-}
-
-.player {
-  order: 2; /* Ensure the player's hand is at the bottom */
-}
+  .player {
+    order: 2; /* Ensure the player's hand is at the bottom */
+  }
 }
