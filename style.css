@@ -205,7 +205,7 @@ button:disabled {
   body {
     font-size: 14px; /* Adjust font size for smaller screens */
     text-align: center;
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     overflow-y: hidden;
   }
 
