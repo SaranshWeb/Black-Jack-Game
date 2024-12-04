@@ -20,7 +20,7 @@
 
   </head>
   <body>
-    <div class="parent">
+    <div class="parent full-height">
       <div id="game">
         <h1 class="lobster-regular" style="font-size: 3rem;">Blackjack</h1>
         <br>
@@ -33,15 +33,15 @@
           <p id="message">Place your bet and press "Deal" to start!</p>
         </div>
         <div class="table lobster-regular">
-          <div class="player lobster-regular">
-            <h3>Your Hand</h3>
-            <div id="player-cards" class="cards"></div>
-            <p id="player-score">Score: 0</p>
-          </div>
           <div class="dealer lobster-regular">
             <h3>Dealer's Hand</h3>
             <div id="dealer-cards" class="cards"></div>
             <p id="dealer-score">Score: 0</p>
+          </div>
+          <div class="player lobster-regular">
+            <h3>Your Hand</h3>
+            <div id="player-cards" class="cards"></div>
+            <p id="player-score">Score: 0</p>
           </div>
         </div>
         <div class="controls lobster-regular">
@@ -58,7 +58,8 @@
 
       </div>
     </div>
-    
+    <button id="exit-fullscreen" style="display: none;">Exit Fullscreen</button>
+
     <script src="script.js"></script>
   </body>
 </html>
