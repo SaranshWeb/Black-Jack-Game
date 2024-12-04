@@ -30,7 +30,6 @@ body {
   font-style: normal;
 }
 
-
 .parent::before {
   content: "";
   position: absolute;
@@ -156,8 +155,7 @@ button:disabled {
   text-align: center;
 }
 
-
-.AuthButton{
+.AuthButton {
   width: auto;
   display: flex;
   position: relative;
@@ -168,6 +166,26 @@ button:disabled {
 
 
 
+
+
+
+
+
+
+#exit-fullscreen {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#exit-fullscreen:hover {
+  background-color: #d32f2f;
+}
 
 
 
@@ -193,8 +211,9 @@ button:disabled {
   #game {
     width: 90%; /* Reduce game container width */
     padding: 15px; /* Add some padding */
-    margin: 20px auto; /* Center on screen */
+    margin: 0px auto; /* Center on screen */
     box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
+    max-height: fit-content;
   }
 
   h1 {
@@ -208,7 +227,7 @@ button:disabled {
 
   .table {
     flex-direction: column; /* Stack player and dealer sections vertically */
-    gap: 20px; /* Add spacing between sections */
+    /*gap: 10px; /* Add spacing between sections */
   }
 
   .cards {
@@ -242,9 +261,9 @@ button:disabled {
   .player {
     order: 2; /* Ensure the player's hand is at the bottom */
   }
+}
 
-  .parent::before {
+.parent::before {
   width: 100vw;
-  height: 110vh;
-  }
+  height: 105vh;
 }
