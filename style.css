@@ -206,6 +206,7 @@ button:disabled {
     font-size: 14px; /* Adjust font size for smaller screens */
     text-align: center;
     padding: 10px;
+    overflow-y: hidden;
   }
 
   #game {
