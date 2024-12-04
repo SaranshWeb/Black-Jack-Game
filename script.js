@@ -22,6 +22,49 @@ const standBtn = document.getElementById("stand");
 const againBtn = document.getElementById("again");
 const balanceEl = document.getElementById("balance");
 const betInputEl = document.getElementById("bet-input");
+const exitFullscreenBtn = document.getElementById("exit-fullscreen");
+
+
+// Fullscreen functionality
+function toggleFullscreen() {
+  const element = document.documentElement; // Select the <html> element for fullscreen
+  if (!document.fullscreenElement) {
+    // Enter fullscreen mode
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen(); // For Firefox
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen(); // For Chrome, Safari, Opera
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen(); // For IE/Edge
+    }
+  }
+}
+
+function exitFullscreen() {
+  if (document.fullscreenElement) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // Safari
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+}
+
+// Show/Hide Exit Fullscreen button based on Again button state
+function updateExitFullscreenVisibility() {
+  if (againBtn.disabled) {
+    exitFullscreenBtn.style.display = "none";
+  } else {
+    exitFullscreenBtn.style.display = "inline-block";
+  }
+}
+
 
 // Initialize Deck
 function createDeck() {
@@ -183,6 +226,10 @@ function handleBlackjack() {
 
 // Event listeners
 dealBtn.addEventListener("click", () => {
+  // Enter fullscreen mode
+  toggleFullscreen();
+
+  // Game logic for deal
   currentBet = parseInt(betInputEl.value) || 100;
   if (currentBet > balance) {
     messageEl.textContent = "Insufficient balance for this bet!";
@@ -223,6 +270,11 @@ standBtn.addEventListener("click", () => {
 });
 
 againBtn.addEventListener("click", resetGame);
+
+exitFullscreenBtn.addEventListener("click", exitFullscreen);
+
+// Initial check (ensure it's hidden when the game starts)
+updateExitFullscreenVisibility();
 
 // Initialize game
 updateBalanceDisplay();
