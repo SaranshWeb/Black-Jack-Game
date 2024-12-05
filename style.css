@@ -182,17 +182,17 @@ button:disabled {
   body {
     font-size: 14px; /* Adjust font size for smaller screens */
     text-align: center;
-    padding: 0 10 0 10;
+    padding: 0;
     overflow-y: hidden;
   }
 
   #game {
-    /*width: 90%; /* Reduce game container width */
+    width: 90%; /* Reduce game container width */
     /*padding: 15px; /* Add some padding */
     margin: 0px; /* Center on screen */
     box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
     /* max-height: fit-content; */
-    height: 100vh;
+    height: 90%;
   }
 
   h1 {
