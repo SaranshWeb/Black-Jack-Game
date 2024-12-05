@@ -189,7 +189,7 @@ button:disabled {
   #game {
     width: 90%; /* Reduce game container width */
     /*padding: 15px; /* Add some padding */
-    margin: 0px; /* Center on screen */
+    margin: 10px; /* Center on screen */
     box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
     /* max-height: fit-content; */
     height: 90%;
