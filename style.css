@@ -183,8 +183,7 @@ button:disabled {
     font-size: 14px; /* Adjust font size for smaller screens */
     text-align: center;
     padding: 0;
-    /* overflow-y: hidden; */
-    margin: 10px;
+    overflow-y: hidden;
   }
 
   #game {
@@ -193,8 +192,7 @@ button:disabled {
     margin: 0px; /* Center on screen */
     box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
     /* max-height: fit-content; */
-    height: 90%;
-    height: 90vh;
+    height: 100vh;
   }
 
   h1 {
