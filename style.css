@@ -182,7 +182,7 @@ button:disabled {
   body {
     font-size: 14px; /* Adjust font size for smaller screens */
     text-align: center;
-    padding: 0;
+    padding: 10px;
     overflow-y: hidden;
   }
 
@@ -192,7 +192,7 @@ button:disabled {
     margin: 10px; /* Center on screen */
     box-shadow: 0 0 5px black; /* Subtle shadow for smaller screens */
     /* max-height: fit-content; */
-    height: 90%;
+    height: 90vh;
   }
 
   h1 {
